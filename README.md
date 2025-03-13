@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js DDD Project
 
-## Getting Started
+Este projeto é uma aplicação Next.js estruturada seguindo os princípios do Domain-Driven Design (DDD).
 
-First, run the development server:
+## Estrutura de diretórios
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+O projeto segue a estrutura DDD com as seguintes camadas:
+
+### 1. Domínio (Domain)
+
+A camada de domínio contém a lógica de negócios principal e é independente de qualquer framework ou tecnologia específica.
+
+```
+/src/domain/
+  /users/
+    /entities/       # Entidades de domínio (User)
+    /value-objects/  # Objetos de valor (Email)
+    /repositories/   # Interfaces de repositório
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Aplicação (Application)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+A camada de aplicação contém os casos de uso da aplicação e orquestra as entidades de domínio.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+/src/application/
+  /users/
+    /dtos/          # Data Transfer Objects
+    /services/      # Serviços de aplicação
+```
 
-## Learn More
+### 3. Infraestrutura (Infrastructure)
 
-To learn more about Next.js, take a look at the following resources:
+A camada de infraestrutura implementa interfaces definidas no domínio e fornece serviços técnicos.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+/src/infrastructure/
+  /database/        # Configuração do banco de dados
+  /repositories/    # Implementação dos repositórios
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 4. Interfaces (Interfaces)
 
-## Deploy on Vercel
+A camada de interfaces contém componentes, páginas e APIs.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+/src/interfaces/
+  /components/      # Componentes React
+  /api/             # Rotas de API
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Estrutura do Next.js
+
+A aplicação Next.js usa o App Router:
+
+```
+/src/app/
+  /api/             # Rotas de API
+  /users/           # Página de usuários
+  page.tsx          # Página inicial
+```
+
+## Executando o projeto
+
+1. Instale as dependências:
+```bash
+npm install
+```
+
+2. Execute o servidor de desenvolvimento:
+```bash
+npm run dev
+```
+
+3. Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
+
+## Tecnologias utilizadas
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- (Simulação de Prisma ORM)
+
+## Padrões implementados
+
+- Domain-Driven Design (DDD)
+- Repository Pattern
+- Dependency Injection
+- Value Objects
+- DTOs (Data Transfer Objects)
